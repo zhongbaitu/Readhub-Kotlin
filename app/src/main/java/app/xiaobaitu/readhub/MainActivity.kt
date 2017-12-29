@@ -3,6 +3,7 @@ package app.xiaobaitu.readhub
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
+import app.xiaobaitu.readhub.network.RetrofitClient
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -14,6 +15,7 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
+                RetrofitClient.getIntance(this, "").test()
                 message.setText(R.string.title_dashboard)
                 return@OnNavigationItemSelectedListener true
             }
