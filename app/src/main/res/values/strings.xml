@@ -3,4 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_topic">热门话题</string>
+    <string name="title_news">科技动态</string>
+    <string name="title_technews">开发者资讯</string>
 </resources>
