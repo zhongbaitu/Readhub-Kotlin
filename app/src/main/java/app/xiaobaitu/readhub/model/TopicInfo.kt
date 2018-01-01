@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName
 
 /**
  * Created by baitu on 18/1/1.
+ * 热门话题 bean
  */
-
 data class TopicInfo(
         @SerializedName("data") val data: List<Data>,
         @SerializedName("pageSize") val pageSize: Int, //20

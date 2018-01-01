@@ -2,8 +2,15 @@ package app.xiaobaitu.readhub
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentPagerAdapter
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import app.xiaobaitu.readhub.base.BaseFragment
+import app.xiaobaitu.readhub.feature.news.NewsFragment
+import app.xiaobaitu.readhub.feature.technews.TechNewsFragment
+import app.xiaobaitu.readhub.feature.topic.TopicFragment
 import app.xiaobaitu.readhub.network.DataLoader
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -11,18 +18,29 @@ class MainActivity : AppCompatActivity() {
 
     val TAG : String = "MainActivity"
 
+    private val PAGE_TOPIC = 0
+    private val PAGE_NEWS = 1
+    private val PAGE_TECH_NEWS = 2
+
+    private val mRhPageAdapter:RhPageAdapter
+
+    init {
+        val fragmentList:List<BaseFragment> = listOf(TopicFragment(), NewsFragment(), TechNewsFragment())
+        mRhPageAdapter = RhPageAdapter(supportFragmentManager, fragmentList)
+    }
+
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
-                switchPage()
+                switchPage(PAGE_TOPIC)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
-                switchPage()
+                switchPage(PAGE_NEWS)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_notifications -> {
-                switchPage()
+                switchPage(PAGE_TECH_NEWS)
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -34,10 +52,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+        mainViewPager.adapter = mRhPageAdapter
     }
 
-    private fun switchPage(){
-//        mainViewPager.adapter =
+    private fun switchPage(page:Int){
+        mainViewPager.setCurrentItem(page, true)
     }
 
     fun test() {
@@ -47,15 +67,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    internal class RhPageAdapter : PagerAdapter() {
-//
-//        override fun isViewFromObject(view: View?, `object`: Any?): Boolean {
-//            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//        }
-//
-//        override fun getCount(): Int {
-//            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//        }
-//
-//    }
+    class RhPageAdapter(fm: FragmentManager?, data:List<BaseFragment>) : FragmentPagerAdapter(fm) {
+
+        private val mFragmentList: List<BaseFragment> = data
+
+        override fun getItem(position: Int): Fragment {
+            return mFragmentList[position]
+        }
+
+        override fun getCount(): Int {
+            return mFragmentList.size
+        }
+    }
 }
