@@ -9,9 +9,11 @@ import java.io.IOException
  */
 object RhHttp {
 
-    val DEFAULT_TIMEOUT: Long = 30
+    val TAG = "RhHttp"
 
-    private var mOkHttpClient: OkHttpClient = OkHttpClient.Builder().build()
+    val DEFAULT_TIMEOUT = 30
+
+    private var mOkHttpClient = OkHttpClient.Builder().build()
 
     fun post(): RhRequest {
         return RhRequest(Method.POST)
@@ -27,14 +29,13 @@ object RhHttp {
         call.enqueue(object : Callback{
             override fun onResponse(call: Call?, response: Response?) {
                 if (response?.isSuccessful!!) {
-                    val result: String = response.body()?.string() ?: ""
-                    callback.onSuccess()
+                    callback.onSuccess(response)
                     callback.onFinish()
                 }
             }
 
             override fun onFailure(call: Call?, e: IOException?) {
-                callback.onError()
+                callback.onError(e!!)
                 callback.onFinish()
             }
         })

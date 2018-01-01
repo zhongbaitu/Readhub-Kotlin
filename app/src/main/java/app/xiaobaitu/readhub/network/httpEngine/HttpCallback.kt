@@ -1,31 +1,39 @@
 package app.xiaobaitu.readhub.network.httpEngine
 
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import com.google.gson.Gson
+import okhttp3.Response
+import java.io.IOException
+
 /**
  * Created by baitu on 18/1/1.
+ * http请求回调封装
  */
-interface HttpCallback{
+interface HttpCallback {
     fun onBefore()
-    fun onSuccess()
-    fun onError()
+    fun onSuccess(response: Response)
+    fun onError(exception: IOException)
     fun onFinish()
 
-    class SimHttpCallback:HttpCallback{
+    class SimHttpCallback<T> : HttpCallback {
 
-        private var successCallback : (() -> Unit)? = null
-        private var errorCallback : (() -> Unit)? = null
-        private var beforeCallback : (() -> Unit)? = null
-        private var finishCallback : (() -> Unit)? = null
+        private var successCallback: ((data: T) -> Unit)? = null
+        private var errorCallback: ((exception: IOException) -> Unit)? = null
+        private var beforeCallback: (() -> Unit)? = null
+        private var finishCallback: (() -> Unit)? = null
 
         override fun onBefore() {
             beforeCallback?.invoke()
         }
 
-        override fun onSuccess() {
-            successCallback?.invoke()
+        override fun onSuccess(response: Response) {
+            val clazs = T::class
+            val data = Gson().fromJson<T>(response.body()?.string() ?:"", clazs.javaObjectType)
+            successCallback?.invoke(data)
         }
 
-        override fun onError() {
-            errorCallback?.invoke()
+        override fun onError(exception: IOException) {
+            errorCallback?.invoke(exception)
         }
 
         override fun onFinish() {
@@ -36,11 +44,11 @@ interface HttpCallback{
             beforeCallback = listener
         }
 
-        fun success(listener: () -> Unit) {
+        fun success(listener: (data: T) -> Unit) {
             successCallback = listener
         }
 
-        fun error(listener: () -> Unit) {
+        fun error(listener: (exception: IOException) -> Unit) {
             errorCallback = listener
         }
 

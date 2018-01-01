@@ -14,16 +14,15 @@ class MainActivity : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
-                message.setText(R.string.title_home)
+                switchPage()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
-                test()
-                message.setText(R.string.title_dashboard)
+                switchPage()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_notifications -> {
-                message.setText(R.string.title_notifications)
+                switchPage()
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -37,10 +36,26 @@ class MainActivity : AppCompatActivity() {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 
+    private fun switchPage(){
+//        mainViewPager.adapter =
+    }
+
     fun test() {
         DataLoader.loadTopic {
-            success { Log.d(TAG, "success ~~~~") }
-            error {  Log.d(TAG, "error ~~~~") }
+            success { data ->  data.pageSize}
+            error { exception -> Log.e(TAG, "exception:", exception) }
         }
     }
+
+//    internal class RhPageAdapter : PagerAdapter() {
+//
+//        override fun isViewFromObject(view: View?, `object`: Any?): Boolean {
+//            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//        }
+//
+//        override fun getCount(): Int {
+//            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//        }
+//
+//    }
 }

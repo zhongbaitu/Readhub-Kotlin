@@ -11,7 +11,7 @@ import okhttp3.Request
 class RhRequest(method: Method) {
     private val mParams: Map<String, String> = HashMap()
     private lateinit var mRequestUrl: String
-    private val mMethod: Method = method
+    private val mMethod = method
 
     fun url(url: String): RhRequest {
         mRequestUrl = url

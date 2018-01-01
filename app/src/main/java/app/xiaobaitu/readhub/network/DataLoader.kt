@@ -1,5 +1,6 @@
 package app.xiaobaitu.readhub.network
 
+import app.xiaobaitu.readhub.model.TopicInfo
 import app.xiaobaitu.readhub.network.httpEngine.HttpCallback
 import app.xiaobaitu.readhub.network.httpEngine.RhHttp
 import app.xiaobaitu.readhub.network.httpEngine.ServiceApi
@@ -10,8 +11,8 @@ import app.xiaobaitu.readhub.network.httpEngine.ServiceApi
  */
 object DataLoader {
 
-    fun loadTopic(callback: HttpCallback.SimHttpCallback.()->Unit) {
-        val ca = HttpCallback.SimHttpCallback()
+    fun loadTopic(callback: HttpCallback.SimHttpCallback<TopicInfo>.()->Unit) {
+        val ca = HttpCallback.SimHttpCallback<TopicInfo>()
         ca.callback()
         RhHttp.get()
                 .url(ServiceApi.TOPIC)
