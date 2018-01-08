@@ -9,7 +9,7 @@ import okhttp3.Request
  *
  */
 class RhRequest(method: Method) {
-    private val mParams: Map<String, String> = HashMap()
+    private val mParams: MutableMap<String, String> = mutableMapOf()
     private lateinit var mRequestUrl: String
     private val mMethod = method
 
@@ -19,7 +19,7 @@ class RhRequest(method: Method) {
     }
 
     fun addParam(key:String, value:String): RhRequest {
-        mParams.plus(Pair(key, value))
+        mParams.put(key, value)
         return this
     }
 

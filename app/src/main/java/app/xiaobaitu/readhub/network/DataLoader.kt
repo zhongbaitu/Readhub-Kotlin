@@ -11,13 +11,17 @@ import app.xiaobaitu.readhub.network.httpEngine.ServiceApi
  */
 object DataLoader {
 
-    fun loadTopic(callback: HttpCallback.SimHttpCallback<TopicInfo>.()->Unit) {
-        val ca = HttpCallback.SimHttpCallback<TopicInfo>()
+    const val FIRST_CURSOR = -1
+
+    private const val PAGE_SIZE = "20"
+
+    fun loadTopic(lastCursor : Int, callback: HttpCallback.SimHttpCallback<TopicInfo>.()->Unit) {
+        val ca = HttpCallback.SimHttpCallback(TopicInfo::class.java)
         ca.callback()
         RhHttp.get()
                 .url(ServiceApi.TOPIC)
-                .addParam(ServiceApi.Params.lastCursor, "-1")
-                .addParam(ServiceApi.Params.pageSize, "20")
+                .addParam(ServiceApi.Params.lastCursor, lastCursor.toString())
+                .addParam(ServiceApi.Params.pageSize, PAGE_SIZE)
                 .execute(ca)
     }
 }

@@ -1,9 +1,11 @@
 package app.xiaobaitu.readhub.network.httpEngine
 
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.os.Handler
+import android.os.Looper
 import com.google.gson.Gson
 import okhttp3.Response
 import java.io.IOException
+
 
 /**
  * Created by baitu on 18/1/1.
@@ -15,44 +17,53 @@ interface HttpCallback {
     fun onError(exception: IOException)
     fun onFinish()
 
-    class SimHttpCallback<T> : HttpCallback {
+    class SimHttpCallback<out DataBean>(private val clazz: Class<DataBean>) : HttpCallback {
 
-        private var successCallback: ((data: T) -> Unit)? = null
+        private var successCallback: ((data: DataBean) -> Unit)? = null
         private var errorCallback: ((exception: IOException) -> Unit)? = null
         private var beforeCallback: (() -> Unit)? = null
         private var finishCallback: (() -> Unit)? = null
 
+        private val mainHandler : Handler = Handler(Looper.getMainLooper())
+
         override fun onBefore() {
-            beforeCallback?.invoke()
+            mainHandler.post({
+                beforeCallback?.invoke()
+            })
         }
 
         override fun onSuccess(response: Response) {
-            val clazs = T::class
-            val data = Gson().fromJson<T>(response.body()?.string() ?:"", clazs.javaObjectType)
-            successCallback?.invoke(data)
+            val data : DataBean = Gson().fromJson<DataBean>(response.body()?.string() ?:"", clazz)
+            mainHandler.post({
+                successCallback?.invoke(data)
+            })
         }
 
         override fun onError(exception: IOException) {
-            errorCallback?.invoke(exception)
+            mainHandler.post({
+                errorCallback?.invoke(exception)
+            })
         }
 
         override fun onFinish() {
-            finishCallback?.invoke()
+            mainHandler.post({
+                finishCallback?.invoke()
+            })
         }
 
-        fun before(listener: () -> Unit) {
+        fun onBefore(listener: () -> Unit) {
             beforeCallback = listener
         }
 
-        fun success(listener: (data: T) -> Unit) {
+        fun onSuccess(listener: (data: DataBean) -> Unit) {
             successCallback = listener
         }
 
-        fun error(listener: (exception: IOException) -> Unit) {
+        fun onError(listener: (exception: IOException) -> Unit) {
             errorCallback = listener
         }
 
-        fun finish(listener: () -> Unit) {
+        fun onFinish(listener: () -> Unit) {
             finishCallback = listener
         }
     }

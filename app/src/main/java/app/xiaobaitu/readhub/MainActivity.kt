@@ -6,12 +6,10 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import app.xiaobaitu.readhub.base.BaseFragment
 import app.xiaobaitu.readhub.feature.news.NewsFragment
 import app.xiaobaitu.readhub.feature.technews.TechNewsFragment
 import app.xiaobaitu.readhub.feature.topic.TopicFragment
-import app.xiaobaitu.readhub.network.DataLoader
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -58,13 +56,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun switchPage(page:Int){
         mainViewPager.setCurrentItem(page, true)
-    }
-
-    fun test() {
-        DataLoader.loadTopic {
-            success { data ->  data.pageSize}
-            error { exception -> Log.e(TAG, "exception:", exception) }
-        }
     }
 
     class RhPageAdapter(fm: FragmentManager?, data:List<BaseFragment>) : FragmentPagerAdapter(fm) {

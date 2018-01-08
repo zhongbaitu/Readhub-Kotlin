@@ -18,7 +18,7 @@ data class Data(
         @SerializedName("id") val id: String, //2dUtej1mvN3
         @SerializedName("createdAt") val createdAt: String, //2018-01-01T07:21:14.000Z
         @SerializedName("nelData") val nelData: NelData,
-        @SerializedName("eventData") val eventData: EventData,
+//        @SerializedName("eventData") val eventData: EventData,
         @SerializedName("newsArray") val newsArray: List<NewsArray>,
         @SerializedName("order") val order: Int, //31004
         @SerializedName("publishDate") val publishDate: String, //2018-01-01T07:21:14.027Z
@@ -91,6 +91,6 @@ data class Result(
 		@SerializedName("entityUniqueId") val entityUniqueId: String //baike_2142763
 )
 
-data class EventData(
-		@SerializedName("result") val result: List<Any>
-)
+//data class EventData(
+//		@SerializedName("result") val result: List<Any>
+//)
