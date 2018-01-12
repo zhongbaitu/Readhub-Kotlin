@@ -1,9 +1,6 @@
 package app.xiaobaitu.readhub.feature.topic
 
 import android.os.Bundle
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import app.xiaobaitu.readhub.R
 import app.xiaobaitu.readhub.base.BaseFragment
@@ -29,18 +26,10 @@ class TopicFragment : BaseFragment(), MainPresenter.Callback<TopicInfo> {
         presenter.register(this)
 
         adapter = TopicAdapter()
-        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        recyclerView.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
-        recyclerView.adapter = adapter
-        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-
-            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                val layoutManager: LinearLayoutManager = recyclerView?.layoutManager as LinearLayoutManager
-                val lastPosition = layoutManager.findLastVisibleItemPosition()
-                if (lastPosition == adapter.itemCount - 1 && adapter.isLoadMoreEnable()) {
-                    loadMoreData()
-                }
+        loadMoreRecyclerView.adapter = adapter
+        loadMoreRecyclerView.setOnLoadMoreListener({
+            if(adapter.isLoadMoreEnable()){
+                loadMoreData()
             }
         })
 
