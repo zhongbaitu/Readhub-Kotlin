@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import app.xiaobaitu.readhub.R
 import app.xiaobaitu.readhub.base.BaseAdapter
-import app.xiaobaitu.readhub.model.Data
+import app.xiaobaitu.readhub.model.TopicData
 
 /**
  * Created by baitu on 18/1/6.
  *
  */
-class TopicAdapter : BaseAdapter<Data>() {
+class TopicAdapter : BaseAdapter<TopicData>() {
 
     val TAG: String = "TopicAdapter"
 
@@ -27,12 +27,27 @@ class TopicAdapter : BaseAdapter<Data>() {
 
     class TopicHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
 
-        var titleTv: TextView = itemView?.findViewById(R.id.titleTv)!!
-        var timeTv: TextView = itemView?.findViewById(R.id.timeTv)!!
+        private var titleTv: TextView = itemView?.findViewById(R.id.titleTv)!!
+        private var timeTv: TextView = itemView?.findViewById(R.id.timeTv)!!
+        private var topicExpandView: TopicExpandView = itemView?.findViewById(R.id.topicExpandView)!!
 
-        fun setInfo(info: Data) {
+        fun setInfo(info: TopicData) {
             titleTv.text = info.title
             timeTv.text = info.publishDate
+
+            itemView.setOnClickListener({
+                if(topicExpandView.getItemCount() > 0){
+                    if(topicExpandView.visibility == View.VISIBLE){
+                        topicExpandView.visibility = View.GONE
+                    }else{
+                        topicExpandView.visibility = View.VISIBLE
+                    }
+                }else{
+                    topicExpandView.setSummary(info.summary)
+                    topicExpandView.addItems(info.newsArray)
+                    topicExpandView.visibility = View.VISIBLE
+                }
+            })
         }
     }
 }

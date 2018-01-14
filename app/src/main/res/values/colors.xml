@@ -3,4 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="title">#333333</color>
+    <color name="sub_title">#888888</color>
+
+    <color name="bg_topic_sub_item">#EEEEEE</color>
+
+    <color name="line_1">#111111</color>
 </resources>

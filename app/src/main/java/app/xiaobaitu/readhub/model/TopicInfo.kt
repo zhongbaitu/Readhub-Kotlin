@@ -8,13 +8,13 @@ import com.google.gson.annotations.SerializedName
  * 热门话题 bean
  */
 data class TopicInfo(
-        @SerializedName("data") val data: List<Data>,
+        @SerializedName("data") val data: List<TopicData>,
         @SerializedName("pageSize") val pageSize: Int, //20
         @SerializedName("totalItems") val totalItems: Int, //10151
         @SerializedName("totalPages") val totalPages: Int //508
 )
 
-data class Data(
+data class TopicData(
         @SerializedName("id") val id: String, //2dUtej1mvN3
         @SerializedName("createdAt") val createdAt: String, //2018-01-01T07:21:14.000Z
         @SerializedName("nelData") val nelData: NelData,
