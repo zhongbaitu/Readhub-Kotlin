@@ -7,4 +7,12 @@
     <string name="title_news">科技动态</string>
     <string name="title_technews">开发者资讯</string>
     <string name="load_mote">加载更多中…</string>
+
+    <string name="r_year">%d年前</string>
+    <string name="r_month">%d个月前</string>
+    <string name="r_week">%d周前</string>
+    <string name="r_day">%d天前</string>
+    <string name="r_hour">%d小时前</string>
+    <string name="r_minute">%d分钟前</string>
+    <string name="r_just_now">刚刚</string>
 </resources>

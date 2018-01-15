@@ -8,6 +8,8 @@ import android.widget.TextView
 import app.xiaobaitu.readhub.R
 import app.xiaobaitu.readhub.base.BaseAdapter
 import app.xiaobaitu.readhub.model.TopicInfo
+import app.xiaobaitu.readhub.utils.Utils
+import org.threeten.bp.OffsetDateTime
 
 /**
  * Created by baitu on 18/1/6.
@@ -33,7 +35,7 @@ class TopicAdapter : BaseAdapter<TopicInfo.TopicData>() {
 
         fun setInfo(info: TopicInfo.TopicData) {
             titleTv.text = info.title
-            timeTv.text = info.publishDate
+            timeTv.text = Utils.getRelativeTimeWithNow(itemView.context, OffsetDateTime.parse(info.publishDate))
 
             itemView.setOnClickListener({
                 if(topicExpandView.getItemCount() > 0){
