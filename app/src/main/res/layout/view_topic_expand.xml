@@ -14,9 +14,9 @@
         android:id="@+id/summaryTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/title"
+        android:textSize="@dimen/summary"
         android:textColor="@color/sub_title"
-        android:lineSpacingExtra="6dp"
+        android:lineSpacingExtra="@dimen/line_spacing_extra_summary"
         tools:text="summary aassssummary aassssummary aassssummary aassssummary aassssummary aassssummary aasss"/>
 
     <LinearLayout

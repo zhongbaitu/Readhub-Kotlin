@@ -5,6 +5,7 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import app.xiaobaitu.readhub.base.BaseFragment
 import app.xiaobaitu.readhub.feature.news.NewsFragment
@@ -33,11 +34,11 @@ class MainActivity : AppCompatActivity() {
                 switchPage(PAGE_TOPIC)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_dashboard -> {
+            R.id.navigation_news -> {
                 switchPage(PAGE_NEWS)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_notifications -> {
+            R.id.navigation_tech_news -> {
                 switchPage(PAGE_TECH_NEWS)
                 return@OnNavigationItemSelectedListener true
             }
@@ -52,6 +53,22 @@ class MainActivity : AppCompatActivity() {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
         mainViewPager.adapter = mRhPageAdapter
+
+        mainViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                when (position) {
+                    PAGE_TOPIC -> navigation.selectedItemId = R.id.navigation_home
+                    PAGE_NEWS -> navigation.selectedItemId = R.id.navigation_news
+                    PAGE_TECH_NEWS -> navigation.selectedItemId = R.id.navigation_tech_news
+                }
+            }
+        })
     }
 
     private fun switchPage(page:Int){

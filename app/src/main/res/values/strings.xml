@@ -15,4 +15,6 @@
     <string name="r_hour">%d小时前</string>
     <string name="r_minute">%d分钟前</string>
     <string name="r_just_now">刚刚</string>
+
+    <string name="format_site_time">%s&#160;&#160;&#160;&#160;%s</string>
 </resources>

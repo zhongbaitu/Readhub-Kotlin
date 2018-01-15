@@ -8,6 +8,8 @@ import android.widget.TextView
 import app.xiaobaitu.readhub.R
 import app.xiaobaitu.readhub.base.BaseAdapter
 import app.xiaobaitu.readhub.model.NewsInfo
+import app.xiaobaitu.readhub.utils.Utils
+import org.threeten.bp.OffsetDateTime
 
 /**
  * Created by baitu on 2018/1/15.
@@ -24,9 +26,16 @@ class NewsAdapter : BaseAdapter<NewsInfo.Data>() {
     class NewsHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
 
         private var titleTv: TextView = itemView?.findViewById(R.id.titleTv)!!
+        private var summaryTv: TextView = itemView?.findViewById(R.id.summaryTv)!!
+        private var timeTv: TextView = itemView?.findViewById(R.id.timeTv)!!
 
         fun setInfo(info:NewsInfo.Data){
             titleTv.text = info.title
+            summaryTv.text = info.summaryAuto
+            timeTv.text = String.format(
+                    itemView.resources.getString(R.string.format_site_time),
+                    info.siteName,
+                    Utils.getRelativeTimeWithNow(itemView.context, OffsetDateTime.parse(info.publishDate)))
         }
     }
 }

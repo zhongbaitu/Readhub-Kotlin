@@ -7,7 +7,11 @@
     <dimen name="main_padding_o">10dp</dimen>
     <dimen name="sub_padding_v">10dp</dimen>
     <dimen name="sub_padding_o">5dp</dimen>
+
     <dimen name="title">16sp</dimen>
+    <dimen name="summary">14sp</dimen>
     <dimen name="sub_title">12sp</dimen>
     <dimen name="title_subtitle_margin">10dp</dimen>
+
+    <dimen name="line_spacing_extra_summary">6dp</dimen>
 </resources>

@@ -1,13 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:toosls="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/main_padding_v"
+    android:paddingTop="@dimen/main_padding_v"
+    android:paddingLeft="@dimen/main_padding_o"
+    android:paddingRight="@dimen/main_padding_o">
 
     <TextView
         android:id="@+id/titleTv"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/main_padding_o"
+        android:paddingRight="@dimen/main_padding_o"
+        android:textColor="@color/title"
+        android:textSize="@dimen/title"
+        toosls:text="这里是标题标题标题标题标题"/>
+
+    <TextView
+        android:id="@+id/summaryTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/title_subtitle_margin"
+        android:paddingLeft="@dimen/main_padding_o"
+        android:paddingRight="@dimen/main_padding_o"
+        android:textColor="@color/sub_title"
+        android:textSize="@dimen/summary"
+        android:lineSpacingExtra="@dimen/line_spacing_extra_summary"
+        toosls:text="summary "/>
+
+    <TextView
+        android:id="@+id/timeTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/title_subtitle_margin"
+        android:paddingLeft="@dimen/main_padding_o"
+        android:paddingRight="@dimen/main_padding_o"
+        android:textColor="@color/sub_title"
+        android:textSize="@dimen/sub_title"
+        toosls:text="50分钟前"/>
 
 </LinearLayout>
