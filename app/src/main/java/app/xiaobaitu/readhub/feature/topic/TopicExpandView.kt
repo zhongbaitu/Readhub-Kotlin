@@ -7,6 +7,8 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import app.xiaobaitu.readhub.R
+import app.xiaobaitu.readhub.model.NewsArray
+import app.xiaobaitu.readhub.utils.ActivityLauncher
 import app.xiaobaitu.readhub.model.TopicInfo
 
 /**
@@ -25,9 +27,13 @@ class TopicExpandView(context: Context?, attrs: AttributeSet?) : LinearLayout(co
     }
 
     fun addItems(datas: List<TopicInfo.TopicData.NewsArray>) {
-        itemLayout.removeAllViews()
+        removeItems()
         createChildItems(datas)
         invalidate()
+    }
+
+    fun removeItems(){
+        itemLayout.removeAllViews()
     }
 
     fun setSummary(summary:String){
@@ -49,7 +55,7 @@ class TopicExpandView(context: Context?, attrs: AttributeSet?) : LinearLayout(co
             itemLayout.addView(itemView, params)
 
             itemView.setOnClickListener({
-
+                ActivityLauncher.launchWebView(context, data.url)
             })
         }
     }

@@ -37,6 +37,8 @@ class TopicAdapter : BaseAdapter<TopicInfo.TopicData>() {
             titleTv.text = info.title
             timeTv.text = Utils.getRelativeTimeWithNow(itemView.context, OffsetDateTime.parse(info.publishDate))
 
+            topicExpandView.removeItems()
+            topicExpandView.visibility = View.GONE
             itemView.setOnClickListener({
                 if(topicExpandView.getItemCount() > 0){
                     if(topicExpandView.visibility == View.VISIBLE){

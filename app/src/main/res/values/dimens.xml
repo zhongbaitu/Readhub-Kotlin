@@ -12,6 +12,7 @@
     <dimen name="summary">14sp</dimen>
     <dimen name="sub_title">12sp</dimen>
     <dimen name="title_subtitle_margin">10dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
     <dimen name="line_spacing_extra_summary">6dp</dimen>
 </resources>
