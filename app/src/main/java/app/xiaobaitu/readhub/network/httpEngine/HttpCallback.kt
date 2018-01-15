@@ -33,7 +33,8 @@ interface HttpCallback {
         }
 
         override fun onSuccess(response: Response) {
-            val data : DataBean = Gson().fromJson<DataBean>(response.body()?.string() ?:"", clazz)
+            val re : String = response.body()?.string()!!
+            val data : DataBean = Gson().fromJson<DataBean>(re ?:"", clazz)
             mainHandler.post({
                 successCallback?.invoke(data)
             })

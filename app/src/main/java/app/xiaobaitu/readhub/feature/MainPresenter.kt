@@ -13,7 +13,7 @@ import app.xiaobaitu.readhub.network.DataLoader
 class MainPresenter {
 
     companion object Params{
-        const val FIRST_CURSOR = -1
+        const val FIRST_CURSOR:Long = -1
         const val PAGE_SIZE = 20
     }
 
@@ -31,7 +31,7 @@ class MainPresenter {
     /**
      * 加载热门话题数据
      */
-    fun loadTopicData(lastCursor: Int) {
+    fun loadTopicData(lastCursor: Long) {
         if (isTopicLoading) {
             return
         }
@@ -56,7 +56,7 @@ class MainPresenter {
     /**
      * 加载科技动态数据
      */
-    fun loadNewsData(lastCursor: Int) {
+    fun loadNewsData(lastCursor: Long) {
         if (isNewsLoading) {
             return
         }
@@ -81,7 +81,7 @@ class MainPresenter {
     /**
      * 加载开发者咨询
      */
-    fun loadTechNewsData(lastCursor: Int) {
+    fun loadTechNewsData(lastCursor: Long) {
         if (isTechNewsLoading) {
             return
         }
@@ -129,6 +129,6 @@ class MainPresenter {
 
     interface Callback<T> {
         fun onLoading(loading: Boolean)
-        fun onDataRefresh(requestCursor: Int, data: T)
+        fun onDataRefresh(requestCursor: Long, data: T)
     }
 }

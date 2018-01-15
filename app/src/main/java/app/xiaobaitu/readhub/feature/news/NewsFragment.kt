@@ -7,6 +7,7 @@ import app.xiaobaitu.readhub.base.BaseFragment
 import app.xiaobaitu.readhub.feature.MainPresenter
 import app.xiaobaitu.readhub.model.NewsInfo
 import kotlinx.android.synthetic.main.fragment_topic.*
+import org.threeten.bp.OffsetDateTime
 
 /**
  * Created by baitu on 18/1/1.
@@ -42,15 +43,16 @@ class NewsFragment: BaseFragment(), MainPresenter.Callback<NewsInfo> {
     }
 
     override fun loadMoreData() {
-        val lastCursor = adapter.getLastItemData()
-        presenter.loadNewsData(lastCursor.id)
+        val lastData = adapter.getLastItemData()
+        val time = OffsetDateTime.parse(lastData.publishDate)
+        presenter.loadNewsData(time.toInstant().toEpochMilli())
     }
 
     override fun onLoading(loading: Boolean) {
         swipeRefreshLayout.isRefreshing = loading
     }
 
-    override fun onDataRefresh(requestCursor: Int, data: NewsInfo) {
+    override fun onDataRefresh(requestCursor: Long, data: NewsInfo) {
         if(requestCursor == MainPresenter.FIRST_CURSOR){
             adapter.refreshData(data.data)
             adapter.setLoadMoreEnable()

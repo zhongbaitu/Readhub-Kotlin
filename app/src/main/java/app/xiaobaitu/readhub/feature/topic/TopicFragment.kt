@@ -44,8 +44,8 @@ class TopicFragment : BaseFragment(), MainPresenter.Callback<TopicInfo> {
     }
 
     override fun loadMoreData() {
-        val lastCursor = adapter.getLastItemData()
-        presenter.loadTopicData(lastCursor.order)
+        val lastData = adapter.getLastItemData()
+        presenter.loadTopicData(lastData.order)
     }
 
     override fun getLayoutId(): Int {
@@ -56,7 +56,7 @@ class TopicFragment : BaseFragment(), MainPresenter.Callback<TopicInfo> {
         swipeRefreshLayout.isRefreshing = loading
     }
 
-    override fun onDataRefresh(requestCursor: Int, data: TopicInfo) {
+    override fun onDataRefresh(requestCursor: Long, data: TopicInfo) {
         if(requestCursor == MainPresenter.FIRST_CURSOR){
             adapter.refreshData(data.data)
             adapter.setLoadMoreEnable()

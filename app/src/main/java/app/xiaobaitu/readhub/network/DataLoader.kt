@@ -16,7 +16,7 @@ object DataLoader {
     /**
      * 加载热门话题数据
      */
-    fun loadTopic(lastCursor : Int, pageSize: Int, callback: HttpCallback.SimHttpCallback<TopicInfo>.()->Unit) {
+    fun loadTopic(lastCursor : Long, pageSize: Int, callback: HttpCallback.SimHttpCallback<TopicInfo>.()->Unit) {
         val ca = HttpCallback.SimHttpCallback(TopicInfo::class.java)
         ca.callback()
         RhHttp.get()
@@ -29,7 +29,7 @@ object DataLoader {
     /**
      * 加载科技动态数据
      */
-    fun loadNews(lastCursor : Int, pageSize: Int, callback: HttpCallback.SimHttpCallback<NewsInfo>.()->Unit) {
+    fun loadNews(lastCursor : Long, pageSize: Int, callback: HttpCallback.SimHttpCallback<NewsInfo>.()->Unit) {
         val ca = HttpCallback.SimHttpCallback(NewsInfo::class.java)
         ca.callback()
         RhHttp.get()
@@ -42,7 +42,7 @@ object DataLoader {
     /**
      * 加载开发者咨询数据
      */
-    fun loadTechNews(lastCursor : Int, pageSize: Int, callback: HttpCallback.SimHttpCallback<TechNewsInfo>.()->Unit) {
+    fun loadTechNews(lastCursor : Long, pageSize: Int, callback: HttpCallback.SimHttpCallback<TechNewsInfo>.()->Unit) {
         val ca = HttpCallback.SimHttpCallback(TechNewsInfo::class.java)
         ca.callback()
         RhHttp.get()

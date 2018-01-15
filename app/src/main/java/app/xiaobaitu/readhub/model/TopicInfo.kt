@@ -18,7 +18,7 @@ data class TopicInfo(
             @SerializedName("createdAt") val createdAt: String, //2018-01-01T07:21:14.000Z
             @SerializedName("nelData") val nelData: NelData,
             @SerializedName("newsArray") val newsArray: List<NewsArray>,
-            @SerializedName("order") val order: Int, //31004
+            @SerializedName("order") val order: Long, //31004
             @SerializedName("publishDate") val publishDate: String, //2018-01-01T07:21:14.027Z
             @SerializedName("summary") val summary: String, //该公司已经宣布与TapTapComics合作发布名为Marvel：CreateYourOwn的新应用程序，该应用程序将允许用户选择超级英雄，制作超级英雄，添加自己的文字和对话框 ... 不幸的是，Marvel：Create Your Own的用户会发现，他们不是很自由地制作漫画 ... 不允许创作的内容包括可能让年幼的孩子或幼儿的父母惊吓的内容，耸人听闻（杀人蜂，八卦，外星人，丑闻等）的内容，猥亵，不良或冒犯性的语言， 处方药或非处方药，维生素和膳食补充剂，死亡内容，政治内容和其他有争议的话题（社会问题等）。
             @SerializedName("title") val title: String, //Marvel提供漫画应用程序让用户自己制作漫画
