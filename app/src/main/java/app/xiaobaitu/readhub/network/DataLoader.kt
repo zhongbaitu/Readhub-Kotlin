@@ -1,6 +1,7 @@
 package app.xiaobaitu.readhub.network
 
 import app.xiaobaitu.readhub.model.NewsInfo
+import app.xiaobaitu.readhub.model.TechNewsInfo
 import app.xiaobaitu.readhub.model.TopicInfo
 import app.xiaobaitu.readhub.network.httpEngine.HttpCallback
 import app.xiaobaitu.readhub.network.httpEngine.RhHttp
@@ -41,8 +42,8 @@ object DataLoader {
     /**
      * 加载开发者咨询数据
      */
-    fun loadTechNews(lastCursor : Int, pageSize: Int, callback: HttpCallback.SimHttpCallback<TopicInfo>.()->Unit) {
-        val ca = HttpCallback.SimHttpCallback(TopicInfo::class.java)
+    fun loadTechNews(lastCursor : Int, pageSize: Int, callback: HttpCallback.SimHttpCallback<TechNewsInfo>.()->Unit) {
+        val ca = HttpCallback.SimHttpCallback(TechNewsInfo::class.java)
         ca.callback()
         RhHttp.get()
                 .url(ServiceApi.TECH_NEWS)

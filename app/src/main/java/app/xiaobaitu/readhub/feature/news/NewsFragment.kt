@@ -38,7 +38,7 @@ class NewsFragment: BaseFragment(), MainPresenter.Callback<NewsInfo> {
     }
 
     override fun loadData() {
-        presenter.loadNewsData(MainPresenter.Params.FIRST_CURSOR)
+        presenter.loadNewsData(MainPresenter.FIRST_CURSOR)
     }
 
     override fun loadMoreData() {

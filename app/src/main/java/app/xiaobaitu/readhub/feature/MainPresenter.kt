@@ -2,6 +2,7 @@ package app.xiaobaitu.readhub.feature
 
 import android.util.Log
 import app.xiaobaitu.readhub.model.NewsInfo
+import app.xiaobaitu.readhub.model.TechNewsInfo
 import app.xiaobaitu.readhub.model.TopicInfo
 import app.xiaobaitu.readhub.network.DataLoader
 
@@ -23,6 +24,9 @@ class MainPresenter {
 
     private var isNewsLoading = false
     private var newsCallback: Callback<NewsInfo>? = null
+
+    private var isTechNewsLoading = false
+    private var techNewsCallback: Callback<TechNewsInfo>? = null
 
     /**
      * 加载热门话题数据
@@ -74,6 +78,31 @@ class MainPresenter {
         }
     }
 
+    /**
+     * 加载开发者咨询
+     */
+    fun loadTechNewsData(lastCursor: Int) {
+        if (isTechNewsLoading) {
+            return
+        }
+        isTechNewsLoading = true
+        DataLoader.loadTechNews(lastCursor, PAGE_SIZE) {
+            onBefore {
+                if (lastCursor == FIRST_CURSOR) {
+                    techNewsCallback?.onLoading(true)
+                }
+            }
+            onSuccess { data ->
+                techNewsCallback?.onDataRefresh(lastCursor, data)
+            }
+            onFinish {
+                techNewsCallback?.onLoading(false)
+                isTechNewsLoading = false
+            }
+            onError { exception -> Log.e(TAG, "loadTechNewsData exception:", exception) }
+        }
+    }
+
     fun registerTopicCallback(callback: Callback<TopicInfo>) {
         topicCallback = callback
     }
@@ -88,6 +117,14 @@ class MainPresenter {
 
     fun unregisterNewsCallback(callback: Callback<NewsInfo>) {
         newsCallback = null
+    }
+
+    fun registerTechNewCallback(callback: Callback<TechNewsInfo>) {
+        techNewsCallback = callback
+    }
+
+    fun unregisterTechNewCallback(callback: Callback<TechNewsInfo>) {
+        techNewsCallback = null
     }
 
     interface Callback<T> {
