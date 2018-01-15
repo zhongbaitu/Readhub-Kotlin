@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import app.xiaobaitu.readhub.R
 import app.xiaobaitu.readhub.base.BaseAdapter
-import app.xiaobaitu.readhub.model.TopicData
+import app.xiaobaitu.readhub.model.TopicInfo
 
 /**
  * Created by baitu on 18/1/6.
  *
  */
-class TopicAdapter : BaseAdapter<TopicData>() {
+class TopicAdapter : BaseAdapter<TopicInfo.TopicData>() {
 
     val TAG: String = "TopicAdapter"
 
@@ -31,7 +31,7 @@ class TopicAdapter : BaseAdapter<TopicData>() {
         private var timeTv: TextView = itemView?.findViewById(R.id.timeTv)!!
         private var topicExpandView: TopicExpandView = itemView?.findViewById(R.id.topicExpandView)!!
 
-        fun setInfo(info: TopicData) {
+        fun setInfo(info: TopicInfo.TopicData) {
             titleTv.text = info.title
             timeTv.text = info.publishDate
 

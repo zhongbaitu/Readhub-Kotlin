@@ -23,4 +23,8 @@ abstract class BaseFragment:Fragment() {
     }
 
     protected abstract fun getLayoutId():Int
+
+    protected abstract fun loadData()
+
+    protected abstract fun loadMoreData()
 }

@@ -1,5 +1,6 @@
 package app.xiaobaitu.readhub.network
 
+import app.xiaobaitu.readhub.model.NewsInfo
 import app.xiaobaitu.readhub.model.TopicInfo
 import app.xiaobaitu.readhub.network.httpEngine.HttpCallback
 import app.xiaobaitu.readhub.network.httpEngine.RhHttp
@@ -11,11 +12,40 @@ import app.xiaobaitu.readhub.network.httpEngine.ServiceApi
  */
 object DataLoader {
 
+    /**
+     * 加载热门话题数据
+     */
     fun loadTopic(lastCursor : Int, pageSize: Int, callback: HttpCallback.SimHttpCallback<TopicInfo>.()->Unit) {
         val ca = HttpCallback.SimHttpCallback(TopicInfo::class.java)
         ca.callback()
         RhHttp.get()
                 .url(ServiceApi.TOPIC)
+                .addParam(ServiceApi.Params.lastCursor, lastCursor.toString())
+                .addParam(ServiceApi.Params.pageSize, pageSize.toString())
+                .execute(ca)
+    }
+
+    /**
+     * 加载科技动态数据
+     */
+    fun loadNews(lastCursor : Int, pageSize: Int, callback: HttpCallback.SimHttpCallback<NewsInfo>.()->Unit) {
+        val ca = HttpCallback.SimHttpCallback(NewsInfo::class.java)
+        ca.callback()
+        RhHttp.get()
+                .url(ServiceApi.NEWS)
+                .addParam(ServiceApi.Params.lastCursor, lastCursor.toString())
+                .addParam(ServiceApi.Params.pageSize, pageSize.toString())
+                .execute(ca)
+    }
+
+    /**
+     * 加载开发者咨询数据
+     */
+    fun loadTechNews(lastCursor : Int, pageSize: Int, callback: HttpCallback.SimHttpCallback<TopicInfo>.()->Unit) {
+        val ca = HttpCallback.SimHttpCallback(TopicInfo::class.java)
+        ca.callback()
+        RhHttp.get()
+                .url(ServiceApi.TECH_NEWS)
                 .addParam(ServiceApi.Params.lastCursor, lastCursor.toString())
                 .addParam(ServiceApi.Params.pageSize, pageSize.toString())
                 .execute(ca)

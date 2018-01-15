@@ -16,16 +16,15 @@ class TopicFragment : BaseFragment(), MainPresenter.Callback<TopicInfo> {
 
     private val TAG: String = "TopicFragment"
 
-    private lateinit var adapter: TopicAdapter
+    private val adapter: TopicAdapter by lazy { TopicAdapter() }
 
     private val presenter: MainPresenter by lazy { MainPresenter() }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        presenter.register(this)
+        presenter.registerTopicCallback(this)
 
-        adapter = TopicAdapter()
         loadMoreRecyclerView.adapter = adapter
         loadMoreRecyclerView.setOnLoadMoreListener({
             if(adapter.isLoadMoreEnable()){
@@ -40,11 +39,11 @@ class TopicFragment : BaseFragment(), MainPresenter.Callback<TopicInfo> {
         loadData()
     }
 
-    fun loadData() {
+    override fun loadData() {
         presenter.loadTopicData(MainPresenter.Params.FIRST_CURSOR)
     }
 
-    fun loadMoreData() {
+    override fun loadMoreData() {
         val lastCursor = adapter.getLastItemData()
         presenter.loadTopicData(lastCursor.order)
     }
@@ -67,7 +66,7 @@ class TopicFragment : BaseFragment(), MainPresenter.Callback<TopicInfo> {
     }
 
     override fun onDestroy() {
-        presenter.unregister(this)
+        presenter.unregisterTopicCallback(this)
         super.onDestroy()
     }
 }

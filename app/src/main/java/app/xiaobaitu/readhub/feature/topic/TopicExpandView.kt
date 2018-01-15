@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import app.xiaobaitu.readhub.R
-import app.xiaobaitu.readhub.model.NewsArray
+import app.xiaobaitu.readhub.model.TopicInfo
 
 /**
  * Created by baitu on 18/1/12.
@@ -24,7 +24,7 @@ class TopicExpandView(context: Context?, attrs: AttributeSet?) : LinearLayout(co
         itemLayout = view.findViewById(R.id.itemLayout)
     }
 
-    fun addItems(datas: List<NewsArray>) {
+    fun addItems(datas: List<TopicInfo.TopicData.NewsArray>) {
         itemLayout.removeAllViews()
         createChildItems(datas)
         invalidate()
@@ -38,7 +38,7 @@ class TopicExpandView(context: Context?, attrs: AttributeSet?) : LinearLayout(co
         return itemLayout.childCount
     }
 
-    private fun createChildItems(datas: List<NewsArray>) {
+    private fun createChildItems(datas: List<TopicInfo.TopicData.NewsArray>) {
         val params = LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         for(data in datas){
             val itemView: View = LayoutInflater.from(context).inflate(R.layout.view_expend_item, this, false)
