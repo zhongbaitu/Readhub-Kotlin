@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import app.xiaobaitu.readhub.R
-import app.xiaobaitu.readhub.model.NewsArray
 import app.xiaobaitu.readhub.utils.ActivityLauncher
 import app.xiaobaitu.readhub.model.TopicInfo
 
