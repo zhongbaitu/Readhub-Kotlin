@@ -18,6 +18,8 @@ abstract class BaseAdapter<TData> : RecyclerView.Adapter<RecyclerView.ViewHolder
     private val VIEW_TYPE_ITEM = 0
     private val VIEW_TYPE_FOOT = 1
 
+    var itemClickListener: ((data: TData) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == VIEW_TYPE_ITEM) {
             createMainViewHolder(parent)
@@ -90,4 +92,8 @@ abstract class BaseAdapter<TData> : RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     class FootHolder(itemView: View?) : RecyclerView.ViewHolder(itemView)
+
+    fun setOnItemClickListener(listener:(data:TData) -> Unit){
+        itemClickListener = listener
+    }
 }

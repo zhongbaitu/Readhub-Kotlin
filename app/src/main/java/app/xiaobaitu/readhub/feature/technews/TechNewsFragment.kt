@@ -6,6 +6,7 @@ import app.xiaobaitu.readhub.R
 import app.xiaobaitu.readhub.base.BaseFragment
 import app.xiaobaitu.readhub.feature.MainPresenter
 import app.xiaobaitu.readhub.model.TechNewsInfo
+import app.xiaobaitu.readhub.utils.ActivityLauncher
 import kotlinx.android.synthetic.main.fragment_topic.*
 import org.threeten.bp.OffsetDateTime
 
@@ -23,6 +24,10 @@ class TechNewsFragment: BaseFragment(), MainPresenter.Callback<TechNewsInfo> {
         super.onViewCreated(view, savedInstanceState)
 
         presenter.registerTechNewCallback(this)
+
+        adapter.setOnItemClickListener {
+            data -> ActivityLauncher.launchWebView(context, data.mobileUrl)
+        }
 
         loadMoreRecyclerView.adapter = adapter
         loadMoreRecyclerView.setOnLoadMoreListener({

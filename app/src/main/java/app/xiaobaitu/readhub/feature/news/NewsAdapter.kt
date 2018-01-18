@@ -20,22 +20,25 @@ class NewsAdapter : BaseAdapter<NewsInfo.Data>() {
     }
 
     override fun bindMainViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-        (holder as NewsHolder).setInfo(getData(position))
+        (holder as NewsHolder).setInfo(getData(position), itemClickListener!!)
     }
 
-    class NewsHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+    private class NewsHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
 
         private var titleTv: TextView = itemView?.findViewById(R.id.titleTv)!!
         private var summaryTv: TextView = itemView?.findViewById(R.id.summaryTv)!!
         private var timeTv: TextView = itemView?.findViewById(R.id.timeTv)!!
 
-        fun setInfo(info:NewsInfo.Data){
+        fun setInfo(info:NewsInfo.Data, listener:(data:NewsInfo.Data) -> Unit){
             titleTv.text = info.title
             summaryTv.text = info.summaryAuto
             timeTv.text = String.format(
                     itemView.resources.getString(R.string.format_site_time),
                     info.siteName,
                     Utils.getRelativeTimeWithNow(itemView.context, OffsetDateTime.parse(info.publishDate)))
+            itemView.setOnClickListener({
+                listener.invoke(info)
+            })
         }
     }
 }

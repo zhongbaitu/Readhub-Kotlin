@@ -20,7 +20,7 @@ class TechNewsAdapter : BaseAdapter<TechNewsInfo.Data>() {
     }
 
     override fun bindMainViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-        (holder as TechNewsHolder).setInfo(getData(position))
+        (holder as TechNewsHolder).setInfo(getData(position), itemClickListener!!)
     }
 
     class TechNewsHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
@@ -29,13 +29,16 @@ class TechNewsAdapter : BaseAdapter<TechNewsInfo.Data>() {
         private var summaryTv: TextView = itemView?.findViewById(R.id.summaryTv)!!
         private var timeTv: TextView = itemView?.findViewById(R.id.timeTv)!!
 
-        fun setInfo(info: TechNewsInfo.Data){
+        fun setInfo(info: TechNewsInfo.Data, listener:(data: TechNewsInfo.Data) -> Unit){
             titleTv.text = info.title
             summaryTv.text = info.summaryAuto
             timeTv.text = String.format(
                     itemView.resources.getString(R.string.format_site_time),
                     info.siteName,
                     Utils.getRelativeTimeWithNow(itemView.context, OffsetDateTime.parse(info.publishDate)))
+            itemView.setOnClickListener({
+                listener.invoke(info)
+            })
         }
     }
 }
