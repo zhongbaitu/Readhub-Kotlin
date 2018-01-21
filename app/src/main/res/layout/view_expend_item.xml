@@ -7,7 +7,8 @@
               android:paddingBottom="@dimen/sub_padding_v"
               android:paddingLeft="@dimen/sub_padding_o"
               android:paddingRight="@dimen/sub_padding_o"
-              android:paddingTop="@dimen/sub_padding_v">
+              android:paddingTop="@dimen/sub_padding_v"
+              android:background="?android:attr/selectableItemBackground">
 
     <TextView
         android:id="@+id/title"

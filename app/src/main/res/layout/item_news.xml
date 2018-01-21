@@ -8,7 +8,8 @@
     android:paddingBottom="@dimen/main_padding_v"
     android:paddingTop="@dimen/main_padding_v"
     android:paddingLeft="@dimen/main_padding_o"
-    android:paddingRight="@dimen/main_padding_o">
+    android:paddingRight="@dimen/main_padding_o"
+    android:background="?android:attr/selectableItemBackgroundBorderless">
 
     <TextView
         android:id="@+id/titleTv"
