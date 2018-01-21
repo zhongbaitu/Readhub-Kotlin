@@ -1,4 +1,4 @@
-package app.xiaobaitu.readhub
+package app.xiaobaitu.readhub.app.activity
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
@@ -6,14 +6,20 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
+import android.widget.Toolbar
+import app.xiaobaitu.readhub.R
+import app.xiaobaitu.readhub.base.BaseActivity
 import app.xiaobaitu.readhub.base.BaseFragment
 import app.xiaobaitu.readhub.feature.news.NewsFragment
 import app.xiaobaitu.readhub.feature.technews.TechNewsFragment
 import app.xiaobaitu.readhub.feature.topic.TopicFragment
+import app.xiaobaitu.readhub.utils.ActivityLauncher
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+/**
+ * main page
+ */
+class MainActivity : BaseActivity() {
 
     val TAG : String = "MainActivity"
 
@@ -21,14 +27,14 @@ class MainActivity : AppCompatActivity() {
     private val PAGE_NEWS = 1
     private val PAGE_TECH_NEWS = 2
 
-    private val mRhPageAdapter:RhPageAdapter
+    private val rhPageAdapter: RhPageAdapter
 
     init {
         val fragmentList:List<BaseFragment> = listOf(TopicFragment(), NewsFragment(), TechNewsFragment())
-        mRhPageAdapter = RhPageAdapter(supportFragmentManager, fragmentList)
+        rhPageAdapter = RhPageAdapter(supportFragmentManager, fragmentList)
     }
 
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+    private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
                 switchPage(PAGE_TOPIC)
@@ -46,13 +52,26 @@ class MainActivity : AppCompatActivity() {
         false
     }
 
+    private val toolBarMenuItemClickListener = Toolbar.OnMenuItemClickListener{ menuItem ->
+        when (menuItem.itemId){
+            R.id.navigation_about -> {
+                ActivityLauncher.launchAbout(this)
+                return@OnMenuItemClickListener true
+            }
+        }
+        false
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        toolBar.inflateMenu(R.menu.menu_main)
+        toolBar.setOnMenuItemClickListener(toolBarMenuItemClickListener)
 
-        mainViewPager.adapter = mRhPageAdapter
+        navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+
+        mainViewPager.adapter = rhPageAdapter
 
         mainViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {

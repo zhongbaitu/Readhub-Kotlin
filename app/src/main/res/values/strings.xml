@@ -17,4 +17,9 @@
     <string name="r_just_now">刚刚</string>
 
     <string name="format_site_time">%s&#160;&#160;&#160;&#160;%s</string>
+
+    <string name="about">关于</string>
+    <string name="share">分享</string>
+    <string name="mark">收藏</string>
+    <string name="share_from">--来自Readhub的分享</string>
 </resources>
