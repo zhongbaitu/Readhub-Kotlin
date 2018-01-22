@@ -19,6 +19,10 @@ class AboutActivity: BaseActivity(), View.OnClickListener, View.OnLongClickListe
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
 
+        toolBar.setNavigationOnClickListener {
+            finish()
+        }
+
         versionTv.text = String.format(getString(R.string.version_name), Utils.getVersionName(this))
 
         readhubTv.text = String.format(getString(R.string.data_from), WebUrl.URL_READHUB)

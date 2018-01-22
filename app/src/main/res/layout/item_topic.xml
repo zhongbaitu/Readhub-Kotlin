@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingBottom="@dimen/main_padding_v"
-    android:paddingTop="@dimen/main_padding_v">
+    android:paddingTop="@dimen/main_padding_v"
+    android:background="?android:attr/selectableItemBackground">
 
     <TextView
         android:id="@+id/titleTv"

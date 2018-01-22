@@ -5,8 +5,12 @@
         android:id="@+id/navigation_share"
         android:title="@string/share"/>
 
+    <!--<item-->
+        <!--android:id="@+id/navigation_mark"-->
+        <!--android:title="@string/mark"/>-->
+
     <item
-        android:id="@+id/navigation_mark"
-        android:title="@string/mark"/>
+        android:id="@+id/navigation_copy_url"
+        android:title="@string/copy_url"/>
 
 </menu>

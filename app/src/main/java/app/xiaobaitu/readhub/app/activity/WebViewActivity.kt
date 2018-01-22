@@ -32,8 +32,8 @@ class WebViewActivity : BaseActivity(){
                 share()
                 return@OnMenuItemClickListener true
             }
-            R.id.navigation_mark -> {
-                //TODO save with database
+            R.id.navigation_copy_url -> {
+                Utils.copyText(this, webview.url)
                 return@OnMenuItemClickListener true
             }
         }

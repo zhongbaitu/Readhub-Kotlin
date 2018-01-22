@@ -21,6 +21,7 @@
     <string name="about">关于</string>
     <string name="share">分享</string>
     <string name="mark">收藏</string>
+    <string name="copy_url">复制URL</string>
     <string name="share_from">--来自Readhub的分享</string>
 
     <string name="version_name">当前版本：v %s</string>
