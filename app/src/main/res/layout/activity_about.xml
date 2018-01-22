@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     android:id="@+id/container"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="app.xiaobaitu.readhub.app.activity.MainActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -28,5 +29,41 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <TextView
+        android:id="@+id/versionTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/title"
+        android:textColor="@color/title"
+        android:padding="@dimen/main_padding_o"
+        tools:text="1.0"/>
 
-</RelativeLayout>
+    <View style="@style/LineLight"/>
+
+    <TextView
+        android:id="@+id/readhubTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/title"
+        android:textColor="@color/title"
+        android:padding="@dimen/main_padding_o"
+        android:background="?android:attr/selectableItemBackground"
+        tools:text="readhub"/>
+
+    <View style="@style/LineLight"/>
+
+    <TextView
+        android:id="@+id/githubTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/title"
+        android:textColor="@color/title"
+        android:padding="@dimen/main_padding_o"
+        android:background="?android:attr/selectableItemBackground"
+        tools:text="readhub"/>
+
+    <View style="@style/LineLight"/>
+
+
+
+</LinearLayout>

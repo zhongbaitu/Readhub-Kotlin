@@ -9,5 +9,5 @@
 
     <color name="bg_topic_sub_item">#EEEEEE</color>
 
-    <color name="line_1">#111111</color>
+    <color name="line_light">#bbbbbb</color>
 </resources>

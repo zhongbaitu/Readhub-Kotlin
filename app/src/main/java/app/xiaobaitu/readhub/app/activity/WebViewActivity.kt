@@ -14,6 +14,7 @@ import android.widget.Toolbar
 import app.xiaobaitu.readhub.R
 import app.xiaobaitu.readhub.base.BaseActivity
 import app.xiaobaitu.readhub.utils.ActivityLauncher
+import app.xiaobaitu.readhub.utils.Utils
 import kotlinx.android.synthetic.main.activity_webview.*
 
 
@@ -47,6 +48,10 @@ class WebViewActivity : BaseActivity(){
         toolBar.setOnMenuItemClickListener(toolBarMenuItemClickListener)
         toolBar.setNavigationOnClickListener {
             finish()
+        }
+        toolBar.setOnLongClickListener {
+            Utils.copyText(this, webview.url)
+            return@setOnLongClickListener true
         }
 
         initWebView()

@@ -15,4 +15,5 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <dimen name="line_spacing_extra_summary">6dp</dimen>
+    <dimen name="line_light">1dp</dimen>
 </resources>

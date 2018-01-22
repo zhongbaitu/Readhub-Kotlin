@@ -22,4 +22,10 @@
     <string name="share">分享</string>
     <string name="mark">收藏</string>
     <string name="share_from">--来自Readhub的分享</string>
+
+    <string name="version_name">当前版本：v %s</string>
+    <string name="data_from">数据来源：%s</string>
+    <string name="github_project">本APP项目开源地址：\n%s</string>
+
+    <string name="copy_toast">URL已复制到剪切板</string>
 </resources>

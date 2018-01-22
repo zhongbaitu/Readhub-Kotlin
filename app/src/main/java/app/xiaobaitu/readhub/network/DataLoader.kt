@@ -5,7 +5,6 @@ import app.xiaobaitu.readhub.model.TechNewsInfo
 import app.xiaobaitu.readhub.model.TopicInfo
 import app.xiaobaitu.readhub.network.httpEngine.HttpCallback
 import app.xiaobaitu.readhub.network.httpEngine.RhHttp
-import app.xiaobaitu.readhub.network.httpEngine.ServiceApi
 
 /**
  * Created by baitu on 2017/12/28.

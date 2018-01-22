@@ -1,9 +1,16 @@
 package app.xiaobaitu.readhub.utils
 
+import android.app.Activity
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
+import android.widget.Toast
 import app.xiaobaitu.readhub.R
 import org.threeten.bp.Duration
 import org.threeten.bp.OffsetDateTime
+
+
+
 
 /**
  * Created by baitu on 2018/1/15.
@@ -30,4 +37,18 @@ object Utils{
             else -> String.format(context.getString(R.string.r_just_now), offset / MINUTE)
         }
     }
+
+    fun getVersionName(activity: Activity): String {
+        val packageManager = activity.packageManager
+        val packInfo = packageManager.getPackageInfo(activity.packageName, 0)
+        return packInfo.versionName
+    }
+
+    fun copyText(context: Context, text: String){
+        val clipboardManager = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText("text_copy", text)
+        clipboardManager.primaryClip = clip
+        Toast.makeText(context, context.getString(R.string.copy_toast), Toast.LENGTH_SHORT).show()
+    }
+
 }
