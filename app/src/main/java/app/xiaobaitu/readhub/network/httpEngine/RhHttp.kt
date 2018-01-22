@@ -28,14 +28,16 @@ object RhHttp {
         val call = mOkHttpClient.newCall(request)
         call.enqueue(object : Callback{
             override fun onResponse(call: Call?, response: Response?) {
-                if (response?.isSuccessful!!) {
+                if (response?.isSuccessful == true) {
                     callback.onSuccess(response)
                     callback.onFinish()
+                }else{
+                    callback.onError(RuntimeException("Response was failure."))
                 }
             }
 
             override fun onFailure(call: Call?, e: IOException?) {
-                callback.onError(e!!)
+                callback.onError(e?: RuntimeException("Response was failure and IOException was null."))
                 callback.onFinish()
             }
         })

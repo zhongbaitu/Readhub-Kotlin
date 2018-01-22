@@ -27,12 +27,7 @@ class MainActivity : BaseActivity() {
     private val PAGE_NEWS = 1
     private val PAGE_TECH_NEWS = 2
 
-    private val rhPageAdapter: RhPageAdapter
-
-    init {
-        val fragmentList:List<BaseFragment> = listOf(TopicFragment(), NewsFragment(), TechNewsFragment())
-        rhPageAdapter = RhPageAdapter(supportFragmentManager, fragmentList)
-    }
+    private lateinit var rhPageAdapter: RhPageAdapter
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -66,13 +61,17 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //toolbar
         toolBar.inflateMenu(R.menu.menu_main)
         toolBar.setOnMenuItemClickListener(toolBarMenuItemClickListener)
 
+        //bottom navigation
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
+        //main content
+        val fragmentList:List<BaseFragment> = listOf(TopicFragment(), NewsFragment(), TechNewsFragment())
+        rhPageAdapter = RhPageAdapter(supportFragmentManager, fragmentList)
         mainViewPager.adapter = rhPageAdapter
-
         mainViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
             }

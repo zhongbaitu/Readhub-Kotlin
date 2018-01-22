@@ -66,7 +66,7 @@ class TopicFragment : BaseFragment(), MainPresenter.Callback<TopicInfo> {
     }
 
     override fun onDestroy() {
-        presenter.unregisterTopicCallback(this)
+        presenter.unregisterTopicCallback()
         super.onDestroy()
     }
 }

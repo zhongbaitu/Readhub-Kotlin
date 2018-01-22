@@ -21,12 +21,10 @@ abstract class BaseAdapter<TData> : RecyclerView.Adapter<RecyclerView.ViewHolder
     var itemClickListener: ((data: TData) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
-        return if (viewType == VIEW_TYPE_ITEM) {
-            createMainViewHolder(parent)
-        } else if (viewType == VIEW_TYPE_FOOT) {
-            FootHolder(LayoutInflater.from(parent?.context).inflate(R.layout.view_foot, parent, false))
-        } else {
-            throw IllegalAccessError("can not found viewType!")
+        return when (viewType) {
+            VIEW_TYPE_ITEM -> createMainViewHolder(parent)
+            VIEW_TYPE_FOOT -> FootHolder(LayoutInflater.from(parent?.context).inflate(R.layout.view_foot, parent, false))
+            else -> throw IllegalAccessError("can not found viewType!")
         }
     }
 

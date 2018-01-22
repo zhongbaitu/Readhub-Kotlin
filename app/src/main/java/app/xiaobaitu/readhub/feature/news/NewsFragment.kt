@@ -72,7 +72,7 @@ class NewsFragment: BaseFragment(), MainPresenter.Callback<NewsInfo> {
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter.unregisterNewsCallback(this)
+        presenter.unregisterNewsCallback()
     }
 
 }

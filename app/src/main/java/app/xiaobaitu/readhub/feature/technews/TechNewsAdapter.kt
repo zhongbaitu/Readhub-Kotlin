@@ -20,16 +20,16 @@ class TechNewsAdapter : BaseAdapter<TechNewsInfo.Data>() {
     }
 
     override fun bindMainViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-        (holder as TechNewsHolder).setInfo(getData(position), itemClickListener!!)
+        (holder as TechNewsHolder).setInfo(getData(position), itemClickListener)
     }
 
-    class TechNewsHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+    class TechNewsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private var titleTv: TextView = itemView?.findViewById(R.id.titleTv)!!
-        private var summaryTv: TextView = itemView?.findViewById(R.id.summaryTv)!!
-        private var timeTv: TextView = itemView?.findViewById(R.id.timeTv)!!
+        private var titleTv: TextView = itemView.findViewById(R.id.titleTv)
+        private var summaryTv: TextView = itemView.findViewById(R.id.summaryTv)
+        private var timeTv: TextView = itemView.findViewById(R.id.timeTv)
 
-        fun setInfo(info: TechNewsInfo.Data, listener:(data: TechNewsInfo.Data) -> Unit){
+        fun setInfo(info: TechNewsInfo.Data, listener: ((data: TechNewsInfo.Data) -> Unit)?){
             titleTv.text = info.title
             summaryTv.text = info.summaryAuto
             timeTv.text = String.format(
@@ -37,7 +37,7 @@ class TechNewsAdapter : BaseAdapter<TechNewsInfo.Data>() {
                     info.siteName,
                     Utils.getRelativeTimeWithNow(itemView.context, OffsetDateTime.parse(info.publishDate)))
             itemView.setOnClickListener({
-                listener.invoke(info)
+                listener?.invoke(info)
             })
         }
     }

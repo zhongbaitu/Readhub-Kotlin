@@ -107,7 +107,7 @@ class MainPresenter {
         topicCallback = callback
     }
 
-    fun unregisterTopicCallback(callback: Callback<TopicInfo>) {
+    fun unregisterTopicCallback() {
         topicCallback = null
     }
 
@@ -115,7 +115,7 @@ class MainPresenter {
         newsCallback = callback
     }
 
-    fun unregisterNewsCallback(callback: Callback<NewsInfo>) {
+    fun unregisterNewsCallback() {
         newsCallback = null
     }
 
@@ -123,7 +123,7 @@ class MainPresenter {
         techNewsCallback = callback
     }
 
-    fun unregisterTechNewCallback(callback: Callback<TechNewsInfo>) {
+    fun unregisterTechNewCallback() {
         techNewsCallback = null
     }
 

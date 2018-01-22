@@ -72,7 +72,7 @@ class TechNewsFragment: BaseFragment(), MainPresenter.Callback<TechNewsInfo> {
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter.unregisterTechNewCallback(this)
+        presenter.unregisterTechNewCallback()
     }
 
 }

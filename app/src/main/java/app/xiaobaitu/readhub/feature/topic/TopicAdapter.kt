@@ -27,11 +27,11 @@ class TopicAdapter : BaseAdapter<TopicInfo.TopicData>() {
         (holder as TopicAdapter.TopicHolder).setInfo(getData(position))
     }
 
-    class TopicHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+    class TopicHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private var titleTv: TextView = itemView?.findViewById(R.id.titleTv)!!
-        private var timeTv: TextView = itemView?.findViewById(R.id.timeTv)!!
-        private var topicExpandView: TopicExpandView = itemView?.findViewById(R.id.topicExpandView)!!
+        private var titleTv: TextView = itemView.findViewById(R.id.titleTv)
+        private var timeTv: TextView = itemView.findViewById(R.id.timeTv)
+        private var topicExpandView: TopicExpandView = itemView.findViewById(R.id.topicExpandView)
 
         fun setInfo(info: TopicInfo.TopicData) {
             titleTv.text = info.title

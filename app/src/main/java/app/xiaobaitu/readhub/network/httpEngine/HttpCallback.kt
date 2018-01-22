@@ -2,9 +2,9 @@ package app.xiaobaitu.readhub.network.httpEngine
 
 import android.os.Handler
 import android.os.Looper
+import android.text.TextUtils
 import com.google.gson.Gson
 import okhttp3.Response
-import java.io.IOException
 
 
 /**
@@ -14,13 +14,13 @@ import java.io.IOException
 interface HttpCallback {
     fun onBefore()
     fun onSuccess(response: Response)
-    fun onError(exception: IOException)
+    fun onError(exception: Exception)
     fun onFinish()
 
     class SimHttpCallback<out DataBean>(private val clazz: Class<DataBean>) : HttpCallback {
 
         private var successCallback: ((data: DataBean) -> Unit)? = null
-        private var errorCallback: ((exception: IOException) -> Unit)? = null
+        private var errorCallback: ((exception: Exception) -> Unit)? = null
         private var beforeCallback: (() -> Unit)? = null
         private var finishCallback: (() -> Unit)? = null
 
@@ -33,14 +33,18 @@ interface HttpCallback {
         }
 
         override fun onSuccess(response: Response) {
-            val re : String = response.body()?.string()!!
-            val data : DataBean = Gson().fromJson<DataBean>(re ?:"", clazz)
-            mainHandler.post({
-                successCallback?.invoke(data)
-            })
+            val re : String? = response.body()?.string()
+            if(!TextUtils.isEmpty(re)){
+                val data : DataBean = Gson().fromJson<DataBean>(re, clazz)
+                mainHandler.post({
+                    successCallback?.invoke(data)
+                })
+            } else {
+                onError(RuntimeException("Response's body can not be empty."))
+            }
         }
 
-        override fun onError(exception: IOException) {
+        override fun onError(exception: Exception) {
             mainHandler.post({
                 errorCallback?.invoke(exception)
             })
@@ -60,7 +64,7 @@ interface HttpCallback {
             successCallback = listener
         }
 
-        fun onError(listener: (exception: IOException) -> Unit) {
+        fun onError(listener: (exception: Exception) -> Unit) {
             errorCallback = listener
         }
 
