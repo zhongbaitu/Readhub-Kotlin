@@ -66,7 +66,7 @@ class TopicFragment : BaseFragment(), MainPresenter.Callback<TopicInfo> {
         }
     }
 
-    override fun onError(type: Int) {
+    override fun onDataLoadError(type: Int) {
         MsgHelp.error(context, type)
     }
 

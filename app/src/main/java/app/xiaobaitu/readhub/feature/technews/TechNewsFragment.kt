@@ -67,7 +67,7 @@ class TechNewsFragment: BaseFragment(), MainPresenter.Callback<TechNewsInfo> {
         }
     }
 
-    override fun onError(type: Int) {
+    override fun onDataLoadError(type: Int) {
         MsgHelp.error(context, type)
     }
 

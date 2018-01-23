@@ -10,7 +10,7 @@ import app.xiaobaitu.readhub.R
  */
 object MsgHelp{
 
-    val TYPE_UNKNOW = -1;
+    val TYPE_UNKNOW = -1
     val TYPE_NO_NETWORK : Int = 0
 
     fun error(context: Context, type:Int){
