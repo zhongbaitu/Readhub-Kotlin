@@ -3,6 +3,7 @@ package app.xiaobaitu.readhub.network.httpEngine
 import android.os.Handler
 import android.os.Looper
 import android.text.TextUtils
+import app.xiaobaitu.readhub.utils.MsgHelp
 import com.google.gson.Gson
 import okhttp3.Response
 
@@ -14,13 +15,13 @@ import okhttp3.Response
 interface HttpCallback {
     fun onBefore()
     fun onSuccess(response: Response)
-    fun onError(exception: Exception)
+    fun onError(type:Int, exception: Exception)
     fun onFinish()
 
     class SimHttpCallback<out DataBean>(private val clazz: Class<DataBean>) : HttpCallback {
 
         private var successCallback: ((data: DataBean) -> Unit)? = null
-        private var errorCallback: ((exception: Exception) -> Unit)? = null
+        private var errorCallback: ((type:Int, exception: Exception) -> Unit)? = null
         private var beforeCallback: (() -> Unit)? = null
         private var finishCallback: (() -> Unit)? = null
 
@@ -40,13 +41,13 @@ interface HttpCallback {
                     successCallback?.invoke(data)
                 })
             } else {
-                onError(RuntimeException("Response's body can not be empty."))
+                onError(MsgHelp.TYPE_UNKNOW, RuntimeException("Response's body can not be empty."))
             }
         }
 
-        override fun onError(exception: Exception) {
+        override fun onError(type:Int, exception: Exception) {
             mainHandler.post({
-                errorCallback?.invoke(exception)
+                errorCallback?.invoke(type, exception)
             })
         }
 
@@ -64,7 +65,7 @@ interface HttpCallback {
             successCallback = listener
         }
 
-        fun onError(listener: (exception: Exception) -> Unit) {
+        fun onError(listener: (type:Int, exception: Exception) -> Unit) {
             errorCallback = listener
         }
 

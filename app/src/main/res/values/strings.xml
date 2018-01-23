@@ -29,4 +29,6 @@
     <string name="github_project">本APP项目开源地址：\n%s</string>
 
     <string name="copy_toast">URL已复制到剪切板</string>
+
+    <string name="msg_no_network">网络无法连接</string>
 </resources>

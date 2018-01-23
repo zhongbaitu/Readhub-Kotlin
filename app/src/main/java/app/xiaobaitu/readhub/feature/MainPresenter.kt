@@ -49,7 +49,10 @@ class MainPresenter {
                 topicCallback?.onLoading(false)
                 isTopicLoading = false
             }
-            onError { exception -> Log.e(TAG, "loadTopicData exception:", exception) }
+            onError { type: Int, exception: Exception ->
+                topicCallback?.onError(type)
+                Log.e(TAG, "loadTopicData exception:", exception)
+            }
         }
     }
 
@@ -74,7 +77,10 @@ class MainPresenter {
                 newsCallback?.onLoading(false)
                 isNewsLoading = false
             }
-            onError { exception -> Log.e(TAG, "loadNewsData exception:", exception) }
+            onError { type: Int, exception ->
+                newsCallback?.onError(type)
+                Log.e(TAG, "loadNewsData exception:", exception)
+            }
         }
     }
 
@@ -99,7 +105,10 @@ class MainPresenter {
                 techNewsCallback?.onLoading(false)
                 isTechNewsLoading = false
             }
-            onError { exception -> Log.e(TAG, "loadTechNewsData exception:", exception) }
+            onError { type: Int, exception ->
+                techNewsCallback?.onError(type)
+                Log.e(TAG, "loadTechNewsData exception:", exception)
+            }
         }
     }
 
@@ -130,5 +139,6 @@ class MainPresenter {
     interface Callback<T> {
         fun onLoading(loading: Boolean)
         fun onDataRefresh(requestCursor: Long, data: T)
+        fun onError(type:Int)
     }
 }

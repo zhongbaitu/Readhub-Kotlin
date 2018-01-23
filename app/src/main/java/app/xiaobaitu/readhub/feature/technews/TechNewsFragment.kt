@@ -7,6 +7,7 @@ import app.xiaobaitu.readhub.base.BaseFragment
 import app.xiaobaitu.readhub.feature.MainPresenter
 import app.xiaobaitu.readhub.model.TechNewsInfo
 import app.xiaobaitu.readhub.utils.ActivityLauncher
+import app.xiaobaitu.readhub.utils.MsgHelp
 import kotlinx.android.synthetic.main.fragment_topic.*
 import org.threeten.bp.OffsetDateTime
 
@@ -64,6 +65,10 @@ class TechNewsFragment: BaseFragment(), MainPresenter.Callback<TechNewsInfo> {
         }else{
             adapter.addDatas(data.data)
         }
+    }
+
+    override fun onError(type: Int) {
+        MsgHelp.error(context, type)
     }
 
     override fun getLayoutId(): Int {

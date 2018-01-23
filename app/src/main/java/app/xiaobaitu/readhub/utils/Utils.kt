@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.net.ConnectivityManager
 import android.widget.Toast
 import app.xiaobaitu.readhub.R
 import org.threeten.bp.Duration
@@ -25,6 +26,9 @@ object Utils{
     private const val MONTH = 31 * DAY
     private const val YEAR = 12 * MONTH
 
+    /**
+     * 获取相对时间，eg：5分钟前、10小时前
+     */
     fun getRelativeTimeWithNow(context: Context, offsetDateTime: OffsetDateTime):String{
         val offset = Duration.between(offsetDateTime, OffsetDateTime.now()).toMillis()
         return when {
@@ -38,12 +42,18 @@ object Utils{
         }
     }
 
+    /**
+     * 获取版本号
+     */
     fun getVersionName(activity: Activity): String {
         val packageManager = activity.packageManager
         val packInfo = packageManager.getPackageInfo(activity.packageName, 0)
         return packInfo.versionName
     }
 
+    /**
+     * 复制内容到剪切板
+     */
     fun copyText(context: Context, text: String){
         val clipboardManager = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText("text_copy", text)
@@ -51,4 +61,12 @@ object Utils{
         Toast.makeText(context, context.getString(R.string.copy_toast), Toast.LENGTH_SHORT).show()
     }
 
+    /**
+     * 网络是否可用
+     */
+    fun isNetworkAvailable(context: Context): Boolean {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val netInfo = cm.activeNetworkInfo
+        return netInfo?.isAvailable ?: false
+    }
 }

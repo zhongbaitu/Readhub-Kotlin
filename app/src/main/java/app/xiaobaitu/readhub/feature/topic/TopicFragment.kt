@@ -6,6 +6,7 @@ import app.xiaobaitu.readhub.R
 import app.xiaobaitu.readhub.base.BaseFragment
 import app.xiaobaitu.readhub.feature.MainPresenter
 import app.xiaobaitu.readhub.model.TopicInfo
+import app.xiaobaitu.readhub.utils.MsgHelp
 import kotlinx.android.synthetic.main.fragment_topic.*
 
 /**
@@ -63,6 +64,10 @@ class TopicFragment : BaseFragment(), MainPresenter.Callback<TopicInfo> {
         }else{
             adapter.addDatas(data.data)
         }
+    }
+
+    override fun onError(type: Int) {
+        MsgHelp.error(context, type)
     }
 
     override fun onDestroy() {
