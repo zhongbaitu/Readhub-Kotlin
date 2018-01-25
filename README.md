@@ -1,10 +1,6 @@
 Screenshots
 ---
-<figure class="half">
-<img src="pic/screenshots_1.jpeg">
-<img src="pic/screenshots_2.jpeg">
-<img src="pic/screenshots_3.jpeg">
-</figure>
+![](pic/screenshots.png)
 
 概述
 ---
@@ -14,7 +10,7 @@ Screenshots
 第三方库只用了：
 - Okhttp
 - Gson
-- threetenabp
+- threetenabp - 时间API兼容库
 
 自己封装了个网络请求框架 RhHttp，UI的BaseFragment、BaseAdapter。
 
@@ -24,6 +20,7 @@ TODO：
 ---
 - 收藏夹 - 方便以后查找/查看用
 - 评论 - 类似hacker news那样
+- 继续学习 Kotlin 特性，优化代码
 
 ---
 
