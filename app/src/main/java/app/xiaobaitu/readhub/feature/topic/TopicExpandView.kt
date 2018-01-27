@@ -7,8 +7,8 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import app.xiaobaitu.readhub.R
-import app.xiaobaitu.readhub.utils.ActivityLauncher
 import app.xiaobaitu.readhub.model.TopicInfo
+import app.xiaobaitu.readhub.utils.ActivityLauncher
 
 /**
  * Created by baitu on 18/1/12.
@@ -43,18 +43,18 @@ class TopicExpandView(context: Context?, attrs: AttributeSet?) : LinearLayout(co
         return itemLayout.childCount
     }
 
-    private fun createChildItems(datas: List<TopicInfo.TopicData.NewsArray>) {
+    private fun createChildItems(data: List<TopicInfo.TopicData.NewsArray>) {
         val params = LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-        for(data in datas){
+        for(tData in data){
             val itemView: View = LayoutInflater.from(context).inflate(R.layout.view_expend_item, this, false)
             val title:TextView = itemView.findViewById(R.id.title)
             val publisher:TextView = itemView.findViewById(R.id.publisher)
-            title.text = data.title
-            publisher.text = data.siteName
+            title.text = tData.title
+            publisher.text = tData.siteName
             itemLayout.addView(itemView, params)
 
             itemView.setOnClickListener({
-                ActivityLauncher.launchWebView(context, data.url)
+                ActivityLauncher.launchWebView(context, tData.url)
             })
         }
     }

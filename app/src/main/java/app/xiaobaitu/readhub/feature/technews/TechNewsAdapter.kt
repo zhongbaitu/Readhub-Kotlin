@@ -23,7 +23,7 @@ class TechNewsAdapter : BaseAdapter<TechNewsInfo.Data>() {
         (holder as TechNewsHolder).setInfo(getData(position), itemClickListener)
     }
 
-    class TechNewsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    private class TechNewsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private var titleTv: TextView = itemView.findViewById(R.id.titleTv)
         private var summaryTv: TextView = itemView.findViewById(R.id.summaryTv)

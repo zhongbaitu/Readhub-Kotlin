@@ -29,7 +29,7 @@ object RhHttp {
 
     fun execute(request: Request, callback: HttpCallback) {
         callback.onBefore()
-        if(!Utils.isNetworkAvailable(RhApplication.Instance.get())){
+        if(!Utils.isNetworkAvailable(RhApplication.get())){
             callback.onError(MsgHelp.TYPE_NO_NETWORK, NetworkErrorException("no network."))
         }
         val call = mOkHttpClient.newCall(request)

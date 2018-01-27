@@ -13,7 +13,7 @@ import app.xiaobaitu.readhub.R
 abstract class BaseAdapter<TData> : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val dataList: MutableList<TData> = mutableListOf()
-    private var loadMoreEnable: Boolean = false
+    private var loadMoreEnable = false
 
     private val VIEW_TYPE_ITEM = 0
     private val VIEW_TYPE_FOOT = 1
@@ -39,10 +39,14 @@ abstract class BaseAdapter<TData> : RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     override fun getItemCount(): Int {
-        return if (loadMoreEnable) {
-            dataList.size + 1
-        } else {
-            dataList.size
+        /**
+         * Kotlin笔记：when 控制流 替代 if
+         * when 只能替代switch ？ ，还可以替代 if
+         * 详见：http://www.kotlincn.net/docs/reference/control-flow.html#when-%E8%A1%A8%E8%BE%BE%E5%BC%8F
+         */
+        return when {
+            loadMoreEnable -> dataList.size + 1
+            else -> dataList.size
         }
     }
 
@@ -69,7 +73,7 @@ abstract class BaseAdapter<TData> : RecyclerView.Adapter<RecyclerView.ViewHolder
         notifyDataSetChanged()
     }
 
-    fun getDatas(): List<TData> {
+    fun getData(): List<TData> {
         return dataList
     }
 

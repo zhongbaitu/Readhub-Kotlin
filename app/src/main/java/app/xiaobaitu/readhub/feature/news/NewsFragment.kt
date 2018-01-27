@@ -3,6 +3,7 @@ package app.xiaobaitu.readhub.feature.news
 import android.os.Bundle
 import android.view.View
 import app.xiaobaitu.readhub.R
+import app.xiaobaitu.readhub.app.listener.LoadDataListener
 import app.xiaobaitu.readhub.base.BaseFragment
 import app.xiaobaitu.readhub.feature.MainPresenter
 import app.xiaobaitu.readhub.model.NewsInfo
@@ -15,11 +16,11 @@ import org.threeten.bp.OffsetDateTime
  * Created by baitu on 18/1/1.
  * 科技动态
  */
-class NewsFragment: BaseFragment(), MainPresenter.Callback<NewsInfo> {
+class NewsFragment: BaseFragment(), MainPresenter.Callback<NewsInfo>, LoadDataListener {
 
-    private val adapter: NewsAdapter by lazy { NewsAdapter() }
+    private val adapter: NewsAdapter by lazy(LazyThreadSafetyMode.NONE) { NewsAdapter() }
 
-    private val presenter: MainPresenter by lazy { MainPresenter() }
+    private val presenter: MainPresenter by lazy(LazyThreadSafetyMode.NONE) { MainPresenter() }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

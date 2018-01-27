@@ -17,17 +17,23 @@ import org.threeten.bp.OffsetDateTime
  */
 class TopicAdapter : BaseAdapter<TopicInfo.TopicData>() {
 
-    val TAG: String = "TopicAdapter"
+    val TAG = "TopicAdapter"
 
     override fun createMainViewHolder(parent: ViewGroup?): RecyclerView.ViewHolder {
-        return TopicAdapter.TopicHolder(LayoutInflater.from(parent?.context).inflate(R.layout.item_topic, parent, false))
+        return TopicHolder(LayoutInflater.from(parent?.context).inflate(R.layout.item_topic, parent, false))
     }
 
     override fun bindMainViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
         (holder as TopicAdapter.TopicHolder).setInfo(getData(position))
     }
 
-    class TopicHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    /**
+     * Kotlin笔记：嵌套类与内部类
+     * TopicHolder 是一个嵌套类，默认和Java的静态内部类一样，不会持有外部类的引用。
+     * 若被 inner 修饰，则会持有外部类的引用，可以调用外部类的成员。
+     * 详见：http://www.kotlincn.net/docs/reference/nested-classes.html
+     */
+    private class TopicHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private var titleTv: TextView = itemView.findViewById(R.id.titleTv)
         private var timeTv: TextView = itemView.findViewById(R.id.timeTv)

@@ -12,19 +12,15 @@ import android.view.ViewGroup
  */
 abstract class BaseFragment:Fragment() {
 
-    private val mLayoutId:Int
+    private val layoutId:Int
 
     init {
-        mLayoutId = this.getLayoutId()
+        layoutId = this.getLayoutId()
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(mLayoutId, container, false)
+        return inflater?.inflate(layoutId, container, false)
     }
 
     protected abstract fun getLayoutId():Int
-
-    protected abstract fun loadData()
-
-    protected abstract fun loadMoreData()
 }

@@ -11,16 +11,17 @@ class RhApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        Instance.instance = this
+        instance = this
 
         AndroidThreeTen.init(this)
     }
 
-    companion object Instance{
+    companion object {
+
         private lateinit var instance:RhApplication
 
-        fun get():RhApplication{
-            return Instance.instance
+        fun get(): RhApplication{
+            return instance
         }
     }
 }
