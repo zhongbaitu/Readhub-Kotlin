@@ -28,7 +28,12 @@ object Utils{
 
     /**
      * 获取相对时间，eg：5分钟前、10小时前
+     *
+     * Kotlin笔记：与Java交互，@JvmStatic
+     * 需要加上 @JvmStatic ，该方法才是一个静态方法，才能被 Java 当成静态方法调用。
+     * 否则，需要实例化才能调用。
      */
+    @JvmStatic
     fun getRelativeTimeWithNow(context: Context, offsetDateTime: OffsetDateTime):String{
         val offset = Duration.between(offsetDateTime, OffsetDateTime.now()).toMillis()
         return when {
@@ -45,6 +50,7 @@ object Utils{
     /**
      * 获取版本号
      */
+    @JvmStatic
     fun getVersionName(activity: Activity): String {
         val packageManager = activity.packageManager
         val packInfo = packageManager.getPackageInfo(activity.packageName, 0)
@@ -54,6 +60,7 @@ object Utils{
     /**
      * 复制内容到剪切板
      */
+    @JvmStatic
     fun copyText(context: Context, text: String){
         val clipboardManager = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText("text_copy", text)
@@ -64,6 +71,7 @@ object Utils{
     /**
      * 网络是否可用
      */
+    @JvmStatic
     fun isNetworkAvailable(context: Context): Boolean {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val netInfo = cm.activeNetworkInfo
